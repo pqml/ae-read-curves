@@ -1,7 +1,7 @@
 {
   "name": "ae-read-curves",
   "amdName": "AEReadCurves",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Read After Effects curves exported by ae-export-curves",
   "source": "src/index.js",
   "main": "dist/ae-read-curves.js",

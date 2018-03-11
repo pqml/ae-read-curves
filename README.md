@@ -4,7 +4,7 @@
 <br><br><br>
 
 ## Example
-Example on [https://pqml.github.io/ae-export-curves](https://pqml.github.io/ae-export-curves)
+Example on [https://pqml.github.io/ae-read-curves](https://pqml.github.io/ae-read-curves)
 
 <br><br>
 

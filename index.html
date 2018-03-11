@@ -1,0 +1,80 @@
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>ae-read-curves example</title>
+    <meta name="description" content="Example for ae-read-curves library">
+    <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0,minimal-ui">
+    <link href="//fonts.googleapis.com/css?family=Nunito:300,400,700" rel="stylesheet">
+    <link href="//cdn.jsdelivr.net/npm/@ajusa/lit@1.0.0/dist/lit.css" rel="stylesheet">
+    <style>
+      .demo {
+        margin: 0;
+        padding: 0;
+        position: relative;
+        background: #ddd;
+      }
+
+      .demo-rect {
+        margin: 0;
+        padding: 0;
+        position: absolute;
+        width: 45px;
+        height: 45px;
+        background: black;
+      }
+    </style>
+  </head>
+  <body class="c">
+    <h2>ae-read-curves example</h2>
+    <h5><a href="https://github.com/pqml/ae-read-curves">→ View ae-read-curves on github</a></h5><br>
+    <h6>Video generated from After Effects:</h6>
+    <video loop muted playsinline src="video.mp4"></video>
+    <h6>Div animated from ae-read-curves values:</h6>
+    <div class="demo"><div class="demo-rect"></div></div>
+    <script src="https://cdn.polyfill.io/v2/polyfill.min.js"></script>
+    <script src="ae-read-curves.umd.js"></script>
+    <script>
+      ;(function () {
+        var comp
+        var video = document.querySelector('video')
+        var demo = document.querySelector('.demo')
+        var rect = document.querySelector('.demo-rect')
+
+        window.fetch('./data.json')
+          .then(function (res) { return res.json() })
+          .then(function (json) { init(json) })
+          .catch(console.error)
+
+        function init (data) {
+          comp = window.AEReadCurves(data)
+
+          demo.style.width = comp.width + 'px'
+          demo.style.height = comp.height + 'px'
+
+          var size = 45;
+          rect.style.top = (comp.height / 2 - size / 2) + 'px'
+          rect.style.left = (-size / 2) + 'px'
+
+          video.play()
+          window.requestAnimationFrame(tick)
+        }
+
+        function update(progress) {
+          comp.seek(progress)
+          var transform = ''
+
+          transform += 'translateX(' + comp.values.translateX + 'px)'
+          transform += 'rotate(' + comp.values.rotation + 'deg)'
+          transform += 'scaleX(' + comp.values.scaleX / 100 + ')'
+          rect.style.transform = transform
+        }
+
+        function tick () {
+          window.requestAnimationFrame(tick)
+          var progress = video.currentTime / video.duration
+          update(progress)
+        }
+      })()
+    </script>
+  </body>
+</html>

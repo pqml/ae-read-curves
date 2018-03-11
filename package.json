@@ -1,0 +1,50 @@
+{
+  "name": "ae-read-curves",
+  "amdName": "AEReadCurves",
+  "version": "0.0.1",
+  "description": "Read After Effects curves exported by ae-export-curves",
+  "source": "src/index.js",
+  "main": "dist/ae-read-curves.js",
+  "module": "dist/ae-read-curves.m.js",
+  "unpkg": "dist/ae-read-curves.umd.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "start": "microbundle watch -f umd -o example --target browser & light-server -s example -p 8080 -w example/**/*",
+    "build": "microbundle -f es,cjs --external all && microbundle -f umd --target browser",
+    "test": "eslint src/**",
+    "deploy": "ghp example"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pqml/ae-read-curves.git"
+  },
+  "keywords": [
+    "after effects",
+    "ae",
+    "curves",
+    "curve",
+    "easing"
+  ],
+  "author": "pqml",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pqml/ae-read-curves/issues"
+  },
+  "homepage": "https://github.com/pqml/ae-read-curves#readme",
+  "dependencies": {
+    "bezier-easing": "^2.0.3"
+  },
+  "devDependencies": {
+    "eslint": "^4.18.2",
+    "eslint-config-standard": "^11.0.0",
+    "eslint-plugin-import": "^2.9.0",
+    "eslint-plugin-node": "^6.0.1",
+    "eslint-plugin-promise": "^3.7.0",
+    "eslint-plugin-standard": "^3.0.1",
+    "ghp": "^1.1.4",
+    "light-server": "^2.4.0",
+    "microbundle": "^0.4.4"
+  }
+}
